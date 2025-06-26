@@ -50,13 +50,12 @@ def index():
 
         try:
             data_df = url_to_data_df(url, n_rounds)
-        except:
-            return render_template('index.html', error_message="Error occured during data scraping.")
+        except Exception as e:
+            return render_template('index.html', error_message=f"Error occured during data scraping:\n{e}")
         
         cache.set(f"data_df:{session['user_id']}", data_df)
         cache.set(f"event_name:{session['user_id']}", event_name)
 
-        print("redirecting")
 
         return redirect("/matchup_results")
 
