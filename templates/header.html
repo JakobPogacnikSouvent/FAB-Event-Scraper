@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg fab-navbar">
+  <div class="container-fluid">
+    <!-- Left: Home Button -->
+    <a href="/" class="fab-navbar-link ms-2">Home</a>
+
+    {% if "/hero_matchups/" in request.path %}
+    <a href="/matchup_results" class="fab-navbar-link ms-2">Matchup Table</a>
+    {% endif %}
+
+
+    <!-- Center: Title -->
+    <span class="navbar-text mx-auto fs-3 fab-text">{{ table_title }}</span>
+
+    <!-- Right: Download Button -->
+    <a href="{{ url_for('download_csv') }}" class="btn btn-primary me-2 fab-btn">Download Data</a>
+  </div>
+</nav>

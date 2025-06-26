@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+    <title>FAB Event Scraper</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="fab-container w-75 p-5">
+        <h1 class="text-center mb-4">Flesh and Blood Event Scraper</h1>
+
+        <!-- Warning message shown only if exists -->
+        {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+        {% endif %}
+
+        <form method="post" class="d-grid gap-3" id="scrapeForm">
+        <div class="d-flex gap-3">
+            <!-- URL Input with Label -->
+            <div class="flex-grow-1">
+            <label for="urlInput" class="form-label">Event Coverage URL:</label>
+            <input
+                type="text"
+                id="urlInput"
+                name="url"
+                class="form-control"
+                placeholder="https://fabtcg.com/en/coverage/calling-bologna-2025/"
+                required
+            />
+            </div>
+
+            <!-- Number of Rounds Input with Label -->
+            <div style="width: 120px;">
+            <label for="roundsInput" class="form-label"># Rounds:</label>
+            <input
+                type="number"
+                id="roundsInput"
+                name="n_rounds"
+                class="form-control"
+                placeholder="12"
+                min="1"
+                required
+            />
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="fab-btn w-100" id="submitBtn">
+            Scrape and organise data
+            </button>
+        </div>
+        </form>
+
+    </div>
+</div>
+
+
+<script>
+    const form = document.getElementById('scrapeForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', function() {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+        `;
+    });
+
+    // Reset button when page is shown (including on Back navigation)
+    window.addEventListener('pageshow', () => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Scrape and organise data';
+    });
+</script>
+
+
+</body>
+</html>
