@@ -57,7 +57,7 @@ def index():
         cache.set(f"event_name:{session['user_id']}", event_name)
 
 
-        return redirect("/matchup_results")
+        return redirect("/matchup_table")
 
     return render_template("index.html")
 
@@ -107,9 +107,8 @@ def highlight_cells(val):
     return ""
 
 
-
-@app.route("/matchup_results", methods=["GET", "POST"])
-def show_matchup_results():
+@app.route("/matchup_table", methods=["GET", "POST"])
+def show_matchup_table():
     data_df = cache.get(f"data_df:{session['user_id']}")
     event_name = cache.get(f"event_name:{session['user_id']}")
     if data_df is None or event_name is None:
@@ -121,8 +120,8 @@ def show_matchup_results():
     styled_df = ratio_df.style.applymap(highlight_cells)
     table_html = styled_df.set_table_attributes('class="dataframe"').to_html()
 
-    table_title = f"{event_name} : Matchup Results"
-    return render_template("matchup_results.html", table=table_html, table_title=table_title)
+    table_title = f"{event_name} : Matchup Table"
+    return render_template("matchup_table.html", table=table_html, table_title=table_title)
 
 @app.route("/hero_matchups/<hero_name>")
 def show_row(hero_name):
@@ -185,4 +184,5 @@ def download_csv():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run()
