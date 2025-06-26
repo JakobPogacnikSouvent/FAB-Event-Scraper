@@ -153,3 +153,10 @@ body::before {
     padding-left: 10px;
     padding-right: 10px;
 }
+
+
+/* Assuming your indices are in the first column: */
+.table-responsive table td:first-child,
+.table-responsive table th:first-child {
+  white-space: nowrap;
+}

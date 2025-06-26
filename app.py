@@ -59,11 +59,6 @@ def index():
 
         return redirect("/matchup_results")
 
-        
-        # ratio_df = make_index_clickable(ratio_df)
-        # table_html = ratio_df.to_html(classes="dataframe", escape=False)
-        # return render_template("show.html", table=table_html)
-
     return render_template("index.html")
 
 def make_index_clickable(df):
@@ -190,4 +185,4 @@ def download_csv():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

@@ -10,13 +10,9 @@
 
     {% include 'header.html' with context %}
 
-    <div class="container-fluid flex-grow-1 overflow-hidden d-flex flex-column">
-        <div class="table-scroll-wrapper d-inline-flex mx-3 my-3 justify-content-center">
-            <div class="table-responsive h-100 d-flex justify-content-center p-3 fab-container">
-                <div>
-                    {{ table|safe }}
-                </div>
-            </div>
+    <div class="container-fluid flex-grow-1 overflow-auto p-3 d-flex justify-content-center">
+        <div class="table-responsive fab-container p-3" style="max-width: 100%; width: fit-content;">
+            {{ table|safe }}
         </div>
     </div>
 
